@@ -1,0 +1,5 @@
+{"message":"User registered successfully"}--_curl_--
+>     "username": "ariel.menezes"
+--_curl_-- 
+>     "password": "1234"
+>   
