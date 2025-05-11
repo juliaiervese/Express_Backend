@@ -1,16 +1,31 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
+
+const { MONGO_URI, MONGO_DB_NAME } = process.env;
+
+
+if (!MONGO_URI) {
+  console.error('ENV var MONGO_URI não encontrada. Verifique seu .env');
+  process.exit(1);
+}
 
 const connect = async () => {
-    try {
-        mongoose.set("strictQuery", true);
-        await mongoose.connect(process.env.MONGO_URI, {
-            dbName: process.env.MONGO_DB_NAME, 
-        });
-        console.log("MongoDB connected");
-    } catch (error) {
-        console.error("MongoDB connection error:", error);
-        process.exit(1); // Exit the process with failure
-    }
-    }
+  try {
+ 
+    mongoose.set('strictQuery', true);
 
-    export default { connect };
+   
+    await mongoose.connect(MONGO_URI, {
+      dbName: MONGO_DB_NAME,  
+    });
+
+    
+    console.log('MongoDB conectado com sucesso!');
+  } catch (error) {
+    
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  }
+};
+
+export default { connect };
